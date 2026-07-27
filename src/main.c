@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
 
   // TODO: Uncomment the code below to pass the first stage
 
-  char [6000] user_input;
+  char user_input [6000];
 
   printf("$ ");
   scanf("%[^\n]",&user_input);
