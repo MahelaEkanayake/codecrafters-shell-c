@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int main(int argc, char *argv[]) {
   // Flush after every printf
@@ -9,10 +10,13 @@ int main(int argc, char *argv[]) {
 
   char user_input [6000];
 
-  printf("$ ");
-  scanf("%[^\n]",&user_input);
+  while(true){
 
-  printf("%s: command not found\n",user_input);
+  	printf("$ ");
+  	scanf("%[^\n]",&user_input);
+
+  	printf("%s: command not found\n",user_input);
+  }
 
   return 0;
 }
