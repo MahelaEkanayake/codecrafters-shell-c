@@ -6,7 +6,13 @@ int main(int argc, char *argv[]) {
   setbuf(stdout, NULL);
 
   // TODO: Uncomment the code below to pass the first stage
+
+  char [6000] user_input;
+
   printf("$ ");
+  scanf("%[^\n]",&user_input);
+
+  printf("%s: command not found\n",user_input);
 
   return 0;
 }
