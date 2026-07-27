@@ -8,9 +8,11 @@ int main(int argc, char *argv[]) {
 
   // TODO: Uncomment the code below to pass the first stage
 
-  char user_input [6000];
+  
 
   while(true){
+	
+	char user_input [6000];
 
   	printf("$ ");
   	scanf("%[^\n]",&user_input);
