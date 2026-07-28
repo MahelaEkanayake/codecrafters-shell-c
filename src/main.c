@@ -14,8 +14,8 @@ int main(int argc, char *argv[]) {
 
   	printf("$ ");
 
-	fflush(stdout);
   	scanf("%[^\n]",&user_input);
+	fflush(stdout);
 
   	printf("%s: command not found\n",user_input);
   }
