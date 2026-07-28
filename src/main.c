@@ -11,10 +11,10 @@ int main(int argc, char *argv[]) {
   char user_input [6000];
 
   while(true){
-	
-	fflush(stdout);
 
   	printf("$ ");
+
+	fflush(stdout);
   	scanf("%[^\n]",&user_input);
 
   	printf("%s: command not found\n",user_input);
