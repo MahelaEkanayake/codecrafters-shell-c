@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 int main(int argc, char *argv[]) {
   // Flush after every printf
@@ -12,8 +13,7 @@ int main(int argc, char *argv[]) {
 
   char buffer [6000];
   char command [6000];
-  const char exit_command[] = "exit";
-  const char echo_command[] = "echo";
+  const char *shell_builtin[] = {"exit", "echo", "type"};
 
   while(true){
 
@@ -22,14 +22,39 @@ int main(int argc, char *argv[]) {
   	fgets(buffer, sizeof(buffer), stdin);     // Scans the command
     sscanf(buffer, "%[^\n]", command);       // fget() + sscanf() instead of scanf()
 
-    if(strncmp(command, exit_command, strlen(exit_command))==0){  // Break the loop if command is "exit"
+    if(strncmp(command, shell_builtin[0], strlen(shell_builtin[0]))==0){  // Break the loop if command is "exit"
       break;
-    }else if(strncmp(command, echo_command, strlen(echo_command))==0){ // echo a string
+    }else if(strncmp(command, shell_builtin[1], strlen(shell_builtin[1]))==0){ // echo a string
       
-      char *arg = command + strlen(echo_command);   // skip the "echo" keyword
+      char *arg = command + strlen(shell_builtin[1]);   // skip the "echo" keyword
       while (*arg && isspace((unsigned char)*arg))  // skip the spaces
         arg++;
       printf("%s\n", arg);
+
+    }else if(strncmp(command, shell_builtin[2], strlen(shell_builtin[2]))==0){ // type command
+      
+      char *arg = command + strlen(shell_builtin[2]); 
+      while (*arg && issapce((unsigned char)*arg))
+        arg++;
+
+      char *token = strtok(arg, " ");  // strtok() for splitting the string into tokens
+      bool is_token_a_shell_builtin = false;
+
+      while(token != NULL){
+        
+        for(size_t i = 0; i < len(shell_builtin); i++){ 
+          if(strncmp(token, shell_builtin[i], strlen(shell_builtin[i]))==0){  // check whether the token is a shell builtin
+            printf("%s is a shell builtin\n",token);
+            is_token_a_shell_builtin = true;
+            break;
+          }
+        }
+
+        if(is_token_a_shell_builtin)
+          printf("%s: not found\n", token);
+
+        token = strtok(NULL, " ");
+      }
 
     }else{
       printf("%s: command not found\n", command);   // error command
