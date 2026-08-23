@@ -34,15 +34,17 @@ int main(int argc, char *argv[]) {
     }else if(strncmp(command, shell_builtin[2], strlen(shell_builtin[2]))==0){ // type command
       
       char *arg = command + strlen(shell_builtin[2]); 
-      while (*arg && issapce((unsigned char)*arg))
+      while (*arg && isspace((unsigned char)*arg))
         arg++;
 
       char *token = strtok(arg, " ");  // strtok() for splitting the string into tokens
       bool is_token_a_shell_builtin = false;
 
+      size_t builtin_count = sizeof(shell_builtin) / sizeof(shell_builtin[0]);
+
       while(token != NULL){
         
-        for(size_t i = 0; i < len(shell_builtin); i++){ 
+        for(size_t i = 0; i < len(builtin_count); i++){ 
           if(strncmp(token, shell_builtin[i], strlen(shell_builtin[i]))==0){  // check whether the token is a shell builtin
             printf("%s is a shell builtin\n",token);
             is_token_a_shell_builtin = true;
