@@ -5,14 +5,16 @@
 #include <ctype.h>
 #include <stdbool.h>
 
+#define INPUT_CHARACTER_LENGTH 8192
+
 int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
 
   // TODO: Uncomment the code below to pass the first stage
 
-  char buffer [6000];
-  char command [6000];
+  char buffer [INPUT_CHARACTER_LENGTH];
+  char command [INPUT_CHARACTER_LENGTH];
   const char *shell_builtin[] = {"exit", "echo", "type"};
 
   while(true){
@@ -53,7 +55,7 @@ int main(int argc, char *argv[]) {
           }
         }
 
-        if(is_token_a_shell_builtin){
+        if(is_token_a_shell_builtin == false){
           printf("%s: not found\n", token);
           fflush(stdout);
         }
