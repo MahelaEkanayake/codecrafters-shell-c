@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 
       while(token != NULL){
         
-        for(size_t i = 0; i < len(builtin_count); i++){ 
+        for(size_t i = 0; i < builtin_count; i++){ 
           if(strncmp(token, shell_builtin[i], strlen(shell_builtin[i]))==0){  // check whether the token is a shell builtin
             printf("%s is a shell builtin\n",token);
             is_token_a_shell_builtin = true;
