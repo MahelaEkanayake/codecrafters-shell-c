@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     }else if(strncmp(command, echo_command, strlen(echo_command))==0){ // echo a string
       
       char *arg = command + strlen(echo_command);   // skip the "echo" keyword
-      while (*arg && issapce((unsigned char)*arg))  // skip the spaces
+      while (*arg && isspace((unsigned char)*arg))  // skip the spaces
         arg++;
       printf("%s\n", arg);
 
