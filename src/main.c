@@ -8,16 +8,18 @@ int main(int argc, char *argv[]) {
 
   // TODO: Uncomment the code below to pass the first stage
 
-  char user_input [6000];
+  char buffer [6000];
+  char command [6000];
 
   while(true){
 
   	printf("$ ");
 
-  	scanf("%[^\n]",&user_input);
-	fflush(stdout);
+  	fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%6000s", command );
 
-  	printf("%s: command not found\n",user_input);
+  	printf("%s: command not found\n", command);
+    fflush(stdout);
   }
 
   return 0;
