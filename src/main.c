@@ -12,6 +12,7 @@ int main(int argc, char *argv[]) {
   char buffer [6000];
   char command [6000];
   char exit_command[] = "exit";
+  char echo_command[] = "echo";
 
   while(true){
 
@@ -22,9 +23,17 @@ int main(int argc, char *argv[]) {
 
     if(strncmp(command, exit_command, strlen(exit_command))==0){  // Break the loop if command is "exit"
       break;
+    }else if(strncmp(command, echo_command, strlen(echo_command))==0){ // echo a string
+      
+      char *arg = command + strlen(echo_command);   // skip the "echo" keyword
+      while (*arg && issapce((unsigned char)*arg))  // skip the spaces
+        arg++;
+      printf("%s\n", arg);
+
+    }else{
+      printf("%s: command not found\n", command);   // error command
     }
 
-  	printf("%s: command not found\n", command);   // TEMPORY: output command
     fflush(stdout);  //    flush buffered output
   }
 
