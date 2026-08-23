@@ -12,15 +12,15 @@ int main(int argc, char *argv[]) {
 
   char buffer [6000];
   char command [6000];
-  char exit_command[] = "exit";
-  char echo_command[] = "echo";
+  const char exit_command[] = "exit";
+  const char echo_command[] = "echo";
 
   while(true){
 
   	printf("$ ");
 
   	fgets(buffer, sizeof(buffer), stdin);     // Scans the command
-    sscanf(buffer, "%6000s", command );       // fget() + sscanf() instead of scanf()
+    sscanf(buffer, "%[^\n]", command);       // fget() + sscanf() instead of scanf()
 
     if(strncmp(command, exit_command, strlen(exit_command))==0){  // Break the loop if command is "exit"
       break;
